@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Login - MyShop{% endblock %}
+
+{% block content %}
+
+<div class="ui centered grid">
+    <div class="eight wide computer sixteen wide mobile column">
+
+        <div class="ui segment">
+
+            <h2 class="ui header">
+                🔐 Login
+            </h2>
+
+            {% if error %}
+            <div class="ui negative message">
+                <div class="header">Login Failed</div>
+                <p>{{ error }}</p>
+            </div>
+            {% endif %}
+
+            <form class="ui form" method="POST">
+
+                <div class="field">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <button
+                    class="ui green fluid button"
+                    type="submit"
+                >
+                    🔐 Login
+                </button>
+
+            </form>
+
+            <div class="ui divider"></div>
+
+            <p>
+                Don't have an account?
+                <a href="{{ url_for('main.register') }}">
+                    Create an account
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

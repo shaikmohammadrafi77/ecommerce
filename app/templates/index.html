@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Products - MyShop{% endblock %}
+
+{% block content %}
+
+<h2 class="ui header">🛒 Product Catalog</h2>
+
+{% if products %}
+
+<div class="ui three stackable cards">
+
+    {% for p in products %}
+
+    <div class="card">
+
+        <div class="content">
+
+            <div class="header">
+                {{ p.name }}
+            </div>
+
+            <div class="description">
+                {{ p.description }}
+            </div>
+
+        </div>
+
+        <div class="extra content">
+
+            <strong>
+                ${{ "%.2f"|format(p.price|float) }}
+            </strong>
+
+            <form
+                method="POST"
+                action="{{ url_for('main.add_to_cart') }}"
+                style="margin-top: 10px;"
+            >
+
+                <input
+                    type="hidden"
+                    name="product_id"
+                    value="{{ p.id }}"
+                >
+
+                <button
+                    class="ui primary button"
+                    type="submit"
+                >
+                    🛒 Add to Cart
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="ui message">
+    <div class="header">No Products Available</div>
+    <p>There are currently no products in the catalog.</p>
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        My E-commerce Site
+        {% endblock %}
+    </title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+
+</head>
+
+<body>
+
+<div class="ui menu">
+
+    <div class="header item">
+        MyShop
+    </div>
+
+    <a class="item"
+       href="{{ url_for('main.index') }}">
+        Home
+    </a>
+
+    <a class="item"
+       href="{{ url_for('main.cart') }}">
+        Cart 🛒
+    </a>
+
+    <div class="right menu">
+
+        {% if session.get('user') %}
+
+            <div class="item">
+                Hello, {{ session.get('user_name') }} 👋
+            </div>
+
+            <a class="item"
+               href="{{ url_for('main.logout') }}">
+                Logout
+            </a>
+
+        {% else %}
+
+            <a class="item"
+               href="{{ url_for('main.login') }}">
+                Login
+            </a>
+
+            <a class="item"
+               href="{{ url_for('main.register') }}">
+                Register
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<div class="ui container"
+     style="margin-top: 20px;">
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js">
+</script>
+
+</body>
+
+</html>

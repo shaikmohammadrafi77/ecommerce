@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Order Successful - MyShop{% endblock %}
+
+{% block content %}
+
+<div class="ui center aligned segment">
+
+    <h2 class="ui green header">
+        ✅ Order Placed Successfully!
+    </h2>
+
+    {% if user_name %}
+        <p>
+            Thank you, <strong>{{ user_name }}</strong>! 🎉
+        </p>
+    {% else %}
+        <p>
+            Thank you for your order! 🎉
+        </p>
+    {% endif %}
+
+    {% if order_id %}
+        <div class="ui positive message">
+            <strong>Order ID:</strong>
+            #{{ order_id }}
+        </div>
+    {% endif %}
+
+    <div style="margin-top: 20px;">
+
+        <a
+            href="{{ url_for('main.index') }}"
+            class="ui primary button"
+        >
+            🛒 Continue Shopping
+        </a>
+
+        <a
+            href="{{ url_for('main.cart') }}"
+            class="ui button"
+        >
+            View Cart
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
